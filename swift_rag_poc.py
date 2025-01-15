@@ -18,10 +18,6 @@ TWEAKS = {
   "OpenAIModel-MD2cM": {}
 }
 
-# st.logo("../image/BMO_Harris_Bank-Logo.wine.png", size="large")
-# st.image("../image/BMO_Harris_Bank-Logo.wine.png", width=600)
-# st.logo("https://upload.wikimedia.org/wikipedia/en/2/21/BMO_Harris_Bank_logo.svg" , size="large")
-st.logo("https://upload.wikimedia.org/wikipedia/en/thumb/2/21/BMO_Harris_Bank_logo.svg/1024px-BMO_Harris_Bank_logo.svg.png", size="large")
 st.title(":blue[SWIFT Document Search]")
 
 def generate_response(input_text):
