@@ -13,40 +13,36 @@ TWEAKS = {
   "OpenAIModel-MD2cM": {}
 }
 
-DROPDOWN_1 = "OFAC"
-DROPDOWN_2 = "NACHA"
-DROPDOWN_3 = "31CFR"
-DROPDOWN_4 = "FedReserveOP"
-DROPDOWN_5 = "SWIFT"
-DROPDOWN_6 = "FinCEN/BSA/AML"
-TITLE = "ACH Assist"
+DROPDOWN_1 = "Swift POC"
+DROPDOWN_2 = "Swift Mimic"
+DROPDOWN_3 = "Academy Award RAG"
 
-st.title(f":blue[{TITLE}]")
+st.title(":blue[ACH Assist]")
 
 with st.sidebar:
     option = st.selectbox("Please select the database",
-                          (DROPDOWN_1, DROPDOWN_2, DROPDOWN_3, DROPDOWN_4, DROPDOWN_5, DROPDOWN_6))
+                          (DROPDOWN_1, DROPDOWN_2, DROPDOWN_3))
 
 # Initialize the environment variables
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 BASE_API_URL = os.getenv("BASE_API_URL")
-LANGFLOW_ID = os.getenv("LANGFLOW_ID_AI_LAB")
-APPLICATION_TOKEN = os.getenv("APPLICATION_TOKEN_AI_LAB")
+LANGFLOW_ID = ""
+APPLICATION_TOKEN = ""
 ENDPOINT = ""
 
 # Select different backend flow based on the selection from the dropdown
 if option == DROPDOWN_1:
-    ENDPOINT = os.getenv("ENDPOINT_OFAC")
+    LANGFLOW_ID = os.getenv("LANGFLOW_ID")
+    APPLICATION_TOKEN = os.getenv("APPLICATION_TOKEN")
+    ENDPOINT = os.getenv("ENDPOINT")
 elif option == DROPDOWN_2:
-    ENDPOINT = os.getenv("ENDPOINT_NACHA")
+    LANGFLOW_ID = os.getenv("LANGFLOW_ID_MIMIC")
+    APPLICATION_TOKEN = os.getenv("APPLICATION_TOKEN_MIMIC")
+    ENDPOINT = os.getenv("ENDPOINT_MIMIC")
 elif option == DROPDOWN_3:
-    ENDPOINT = os.getenv("ENDPOINT_31CFR")
-elif option == DROPDOWN_4:
-    ENDPOINT = os.getenv("ENDPOINT_FEDRESERVEOP")
-elif option == DROPDOWN_5:
-    ENDPOINT = os.getenv("ENDPOINT_SWIFT")
-elif option == DROPDOWN_6:
-    ENDPOINT = os.getenv("ENDPOINT_FINCENBSA")
+    LANGFLOW_ID = os.getenv("LANGFLOW_ID_BASIC_RAG")
+    APPLICATION_TOKEN = os.getenv("APPLICATION_TOKEN_BASIC_RAG")
+    ENDPOINT = os.getenv("ENDPOINT_BASIC_RAG")
 else:
     print(f"Invalid option: {option}")
 
