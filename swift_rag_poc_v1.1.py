@@ -17,7 +17,7 @@ DROPDOWN_1 = "Swift POC"
 DROPDOWN_2 = "Swift Mimic"
 DROPDOWN_3 = "Academy Award RAG"
 
-st.title(":blue[Financial Regulation Doc Search]")
+st.title(":blue[ACH Assist]")
 
 with st.sidebar:
     option = st.selectbox("Please select the database",

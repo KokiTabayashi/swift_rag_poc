@@ -18,7 +18,7 @@ TWEAKS = {
   "OpenAIModel-MD2cM": {}
 }
 
-st.title(":blue[SWIFT Document Search]")
+st.title(":blue[ACH Assist]")
 
 def generate_response(input_text):
     for chunk in run_flow(
