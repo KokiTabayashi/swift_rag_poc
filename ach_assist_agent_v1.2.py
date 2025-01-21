@@ -14,6 +14,7 @@ LANGFLOW_ID = os.getenv("LANGFLOW_ID_AI_LAB")
 APPLICATION_TOKEN = os.getenv("APPLICATION_TOKEN_AI_LAB")
 ENDPOINT = os.getenv("ENDPOINT_ACH_ASSIST")
 TITLE = "ACH Assist"
+MESSAGE_WAITING = "One moment while I retrieve the most accurate answer to your question…"
 
 TWEAKS = {
   "ChatInput-f8de8": {},
@@ -79,7 +80,7 @@ if prompt := st.chat_input("Any question?"):
 
     with st.chat_message("assistant"):
         # Show a spinner while waiting for the streamed response
-        with st.spinner("Searching for the document..."):
+        with st.spinner(f"{MESSAGE_WAITING}"):
             try:
                 response = generate_response(prompt)
                 answer = st.write_stream(response)    # To display previous chat, this needs to be write_stream

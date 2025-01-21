@@ -20,6 +20,7 @@ DROPDOWN_4 = "FedReserveOP"
 DROPDOWN_5 = "SWIFT"
 DROPDOWN_6 = "FinCEN/BSA/AML"
 TITLE = "ACH Assist"
+MESSAGE_WAITING = "One moment while I retrieve the most accurate answer to your question…"
 
 st.title(f":blue[{TITLE}]")
 
@@ -105,7 +106,7 @@ if prompt := st.chat_input("Any question?"):
 
     with st.chat_message("assistant"):
         # Show a spinner while waiting for the streamed response
-        with st.spinner("Searching for the document..."):
+        with st.spinner(f"{MESSAGE_WAITING}"):
             try:
                 response = generate_response(prompt)
                 answer = st.write_stream(response)    # To display previous chat, this needs to be write_stream
