@@ -87,10 +87,11 @@ if prompt := st.chat_input("Any question?"):
         with st.spinner(f"{MESSAGE_WAITING}"):
             try:
                 response = generate_response(prompt)
-                answer = st.write_stream(response)    # To display previous chat, this needs to be write_stream
-                # answer = st.write(response)             # This won't display previous chat.
+                answer = st.write_stream(response)      # To display previous chat, this needs to be write_stream
+                # answer = st.write(response)           # This won't display previous chat.
             except Exception as e:
-                st.write(f"{answer:=ERROR_MESSAGE}")
+                answer = ERROR_MESSAGE                  # Intentionally not using walrus operator.
+                st.write(f"{answer}")                   # It worked locally, but caused error when deployed to the server.
                 # For debug
                 # st.write("Error: ", str(e))
 
