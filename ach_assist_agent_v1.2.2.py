@@ -90,7 +90,7 @@ if prompt := st.chat_input("Any question?"):
                 answer = st.write_stream(response)    # To display previous chat, this needs to be write_stream
                 # answer = st.write(response)             # This won't display previous chat.
             except Exception as e:
-                st.write(f"{ERROR_MESSAGE}")
+                st.write(f"{answer:=ERROR_MESSAGE}")
                 # For debug
                 # st.write("Error: ", str(e))
 
