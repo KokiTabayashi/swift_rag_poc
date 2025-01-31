@@ -11,21 +11,16 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 BASE_API_URL = os.getenv("BASE_API_URL")
 LANGFLOW_ID = os.getenv("LANGFLOW_ID_AI_LAB")
 APPLICATION_TOKEN = os.getenv("APPLICATION_TOKEN_AI_LAB")
-ENDPOINT = os.getenv("ENDPOINT_BSA_OFFICER_v1_2_1")
+ENDPOINT = os.getenv("ENDPOINT_BSA_OFFICER_v1_1")
 TITLE = "BSA Officer"
 MESSAGE_WAITING = "One moment while I retrieve the most accurate answer to your question…"
 ERROR_MESSAGE = "I faced a technical difficulty. Could you please ask again?"
 
 TWEAKS = {
-  "ChatInput-ZKXtX": {},
-  "ParseData-SjmrK": {},
-  "Prompt-KzzOc": {},
-  "ChatOutput-wFnMv": {},
-  "OpenAIEmbeddings-kQuxy": {},
-  "AstraDB-KRFh9": {},
-  "OpenAIModel-Z41qo": {
-    "stream": True
-  }
+  "ChatInput-f8de8": {},
+  "Prompt-SfS5T": {},
+  "ChatOutput-yfFep": {},
+  "OpenAIModel-MD2cM": {}
 }
 
 st.title(f":blue[{TITLE}]")
@@ -68,9 +63,13 @@ def run_flow(
     if application_token:
         headers = {"Authorization": "Bearer " + application_token, "Content-Type": "application/json"}
 
-    response = requests.post(api_url, json=payload, headers=headers, stream=True)
+    response = requests.post(api_url, json=payload, headers=headers)
+    # Debug - show the raw response text to console
+    print(response.json()["outputs"][0]["outputs"][0]["results"]["message"]["text"])
     raw_response = response.json()["outputs"][0]["outputs"][0]["results"]["message"]["text"]
     formatted_response = raw_response.replace('$', '\$')
+    print(formatted_response)
+    # yield response.json()["outputs"][0]["outputs"][0]["results"]["message"]["text"]
     yield formatted_response
 
 if "messages" not in st.session_state:
