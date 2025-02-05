@@ -67,8 +67,10 @@ def run_flow(
     if application_token:
         headers = {"Authorization": "Bearer " + application_token, "Content-Type": "application/json"}
 
-    response = requests.post(api_url, json=payload, headers=headers)
-    yield response.json()["outputs"][0]["outputs"][0]["results"]["message"]["text"]
+    response = requests.post(api_url, json=payload, headers=headers, stream=True)
+    raw_response = response.json()["outputs"][0]["outputs"][0]["results"]["message"]["text"]
+    formatted_response = raw_response.replace('$', '\$')
+    yield formatted_response
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
